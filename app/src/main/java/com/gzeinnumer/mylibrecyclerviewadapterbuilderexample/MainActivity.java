@@ -37,10 +37,11 @@ public class MainActivity extends AppCompatActivity {
         AdapterCreator<MyModel> adapter = new AdapterBuilder<MyModel>(R.layout.rv_item)
                 .setCustomNoItem(R.layout.custom_empty_item)
                 .setAnimation(R.anim.anim_two)
-//                .setList(list)
+                .setList(list)
                 .onBind(new BindViewHolder() {
                     @Override
                     public void bind(View holder, int position) {
+                        //rv_item -> RvItemBinding
                         RvItemBinding bindingItem = RvItemBinding.bind(holder);
                         bindingItem.btn.setText(list.get(position).id + "_" + list.get(position).name);
                         bindingItem.btn.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 10; i < 100; i++) {
                     list.add(new MyModel(i, "Data Ke " + (i + 1)));
                 }
-//                adapter.setList(list);
+                adapter.setList(list);
             }
         }.start();
 
