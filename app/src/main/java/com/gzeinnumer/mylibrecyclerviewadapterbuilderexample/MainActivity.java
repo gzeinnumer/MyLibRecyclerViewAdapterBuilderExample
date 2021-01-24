@@ -61,18 +61,15 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public List<MyModel> performFiltering(CharSequence constraint, List<MyModel> listFilter) {
                         List<MyModel> fildteredList = new ArrayList<>();
-                        if (constraint == null || constraint.length() == 0) {
-                            Collections.sort(listFilter, new Comparator<MyModel>() {
-                                @Override
-                                public int compare(MyModel o1, MyModel o2) {
-                                    return o1.getName().toLowerCase().compareTo(o2.getName().toLowerCase());
-                                }
-                            });
-                            fildteredList.addAll(listFilter);
-                        } else {
+                        if (constraint != null || constraint.length() != 0) {
                             String filterPattern = constraint.toString().toLowerCase().trim();
                             for (MyModel item : listFilter) {
+                                //filter by id
                                 if (String.valueOf(item.getId()).toLowerCase().contains(filterPattern)) {
+                                    fildteredList.add(item);
+                                }
+                                //filter by name
+                                if (item.getName().toLowerCase().contains(filterPattern)) {
                                     fildteredList.add(item);
                                 }
                             }
@@ -81,9 +78,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+        binding.rv.setAdapter(adapter);
         binding.rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         binding.rv.hasFixedSize();
-        binding.rv.setAdapter(adapter);
 
         //after 5 second, new data will appear
         new CountDownTimer(5000, 1000) {
