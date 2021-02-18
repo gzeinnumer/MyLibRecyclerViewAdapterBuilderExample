@@ -10,11 +10,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.gzeinnumer.mylibrecyclerviewadapterbuilder.helper.BindViewHolder;
-import com.gzeinnumer.mylibrecyclerviewadapterbuilder.helper.FilterCallBack;
-import com.gzeinnumer.mylibrecyclerviewadapterbuilder.singleType.AdapterBuilder;
-import com.gzeinnumer.mylibrecyclerviewadapterbuilder.singleType.AdapterCreator;
 import com.gzeinnumer.mylibrecyclerviewadapterbuilderexample.databinding.ActivitySingleTypeBinding;
+import com.gzeinnumer.rab.helper.BindViewHolder;
+import com.gzeinnumer.rab.helper.FilterCallBack;
+import com.gzeinnumer.rab.singleType.AdapterBuilder;
+import com.gzeinnumer.rab.singleType.AdapterCreator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,8 +43,9 @@ public class SingleTypeActivity extends AppCompatActivity {
                 .setAnimation(R.anim.anim_two)
                 .setDivider(R.layout.custom_divider)
                 .onBind(new BindViewHolder<MyModel>() {
+
                     @Override
-                    public void bind(View holder, MyModel data, int position) {
+                    public void bind(AdapterCreator<MyModel> adapter, View holder, MyModel data, int position) {
                         com.gzeinnumer.mylibrecyclerviewadapterbuilderexample.databinding.RvItemBinding bindingItem = com.gzeinnumer.mylibrecyclerviewadapterbuilderexample.databinding.RvItemBinding.bind(holder);
                         bindingItem.btn.setText(data.getId() + "_" + data.getName());
                         bindingItem.btn.setOnClickListener(new View.OnClickListener() {

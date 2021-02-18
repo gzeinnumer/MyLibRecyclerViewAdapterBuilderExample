@@ -10,14 +10,14 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.gzeinnumer.mylibrecyclerviewadapterbuilder.helper.BindViewHolderMultiType;
-import com.gzeinnumer.mylibrecyclerviewadapterbuilder.helper.FilterCallBack;
-import com.gzeinnumer.mylibrecyclerviewadapterbuilder.model.TypeViewItem;
-import com.gzeinnumer.mylibrecyclerviewadapterbuilder.multiType.AdapterBuilderMultiType;
-import com.gzeinnumer.mylibrecyclerviewadapterbuilder.multiType.AdapterCreatorMultiType;
 import com.gzeinnumer.mylibrecyclerviewadapterbuilderexample.databinding.ActivityMultiTypeBinding;
 import com.gzeinnumer.mylibrecyclerviewadapterbuilderexample.databinding.RvItemBinding;
 import com.gzeinnumer.mylibrecyclerviewadapterbuilderexample.databinding.RvItemGenapBinding;
+import com.gzeinnumer.rab.helper.BindViewHolderMultiType;
+import com.gzeinnumer.rab.helper.FilterCallBack;
+import com.gzeinnumer.rab.model.TypeViewItem;
+import com.gzeinnumer.rab.multiType.AdapterBuilderMultiType;
+import com.gzeinnumer.rab.multiType.AdapterCreatorMultiType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +58,7 @@ public class MultiTypeActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void bind(View holder, MyModel data, int position, int viewType) {
+                    public void bind(AdapterCreatorMultiType<MyModel> adapter, View holder, MyModel data, int position, int viewType) {
                         if (viewType == TYPE_GENAP) {
                             RvItemGenapBinding bindingItem = RvItemGenapBinding.bind(holder);
                             bindingItem.btn.setText(data.getId() + "_" + data.getName() + "_Genap");
